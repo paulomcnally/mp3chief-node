@@ -1,6 +1,7 @@
 {
   "name": "mp3chief",
   "version": "0.0.1",
+  "description": "Web scraping mp3chief.com",
   "dependencies": {
     "cheerio": "~0.13.1",
     "express": "~3.4.8",
