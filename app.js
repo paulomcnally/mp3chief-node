@@ -28,19 +28,24 @@ app.get('/', function(req, res){
 	var q = req.param('q');
 
 	if( q ){
-		request({ uri: "http://www.mp3chief.com/search?q="+encodeURIComponent( q ),}, function(error, response, body) {
+		request({ uri: "http://www.mp3chief.com/search?q="+encodeURIComponent( q ) }, function(error, response, body) {
 			var $ = cheerio.load(body, {ignoreWhitespace: true,xmlMode: false});
 
 
-			$("#song_items .song_item").each(function(){
+			$("#songs-list li").each(function(){
 				var _$ = cheerio.load($(this).html());
-				var name = _$(".item_name").text();
-				var link = _$(".item_links .download a").attr("href");
+				var name = _$(".song-primary-col h3").text();
+				var link = _$(".song-primary-col ul .download a").attr("href");
 
-				var obj = {};
-				obj.link = link;
-				obj.name = name;
-				result.push(obj);
+                if( link != "" && name != "" ){
+
+                    var obj = {};
+                    obj.link = link;
+                    obj.name = name;
+                    result.push(obj);
+
+                }
+
 			});
 
 			res.send( JSON.stringify(result) );
@@ -52,4 +57,4 @@ app.get('/', function(req, res){
 
 });
 
-app.listen(process.env.VCAP_APP_PORT || 3000);
+app.listen(4922);
