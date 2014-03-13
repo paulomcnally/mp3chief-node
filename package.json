@@ -1,0 +1,9 @@
+{
+  "name": "mp3chief",
+  "version": "0.0.1",
+  "dependencies": {
+    "cheerio": "~0.13.1",
+    "express": "~3.4.8",
+    "request": "~2.34.0"
+  }
+}
